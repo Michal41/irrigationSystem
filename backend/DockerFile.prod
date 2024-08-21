@@ -4,6 +4,7 @@ RUN apk add yarn
 RUN mkdir /app
 WORKDIR /app
 COPY . /app
+RUN apk add --update --no-cache make gcc g++ python3
 
 RUN yarn install
 RUN npx tsc

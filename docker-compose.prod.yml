@@ -6,16 +6,12 @@ services:
     environment:
       DRY_RUN: 'false'
     restart: always
-    volumes:
-      - ./backend/:/app
-      - /app/node_modules/
     ports:
       - "8003:8003"
     build:
       context: backend/.
-      dockerfile: Dockerfile
-    # command: /bin/sh -c 'yarn run start'
-    command: 'tail -f /dev/null'
+      dockerfile: DockerFile.prod
+    command: 'yarn start'
     depends_on:
       - backend-db
   backend-db:
@@ -25,3 +21,10 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: appuser
       POSTGRES_DB: postgres
+  frontend:
+    ports:
+      - "80:80"
+    build:
+      context: frontend/.
+      dockerfile: DockerFile.prod
+    restart: always
