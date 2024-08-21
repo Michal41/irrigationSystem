@@ -4,14 +4,23 @@
 
 .App-logo {
   height: 40vmin;
-  pointer-events: none;
+  background: linear-gradient(90deg, rgb(89, 139, 255), rgb(51, 102, 255));
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Duration-button {
+  padding: 5px 15px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  margin: 5px;
+  cursor: pointer;
+  background: linear-gradient(90deg, rgb(89, 139, 255), rgb(51, 102, 255));
 }
+
 
 .App-header {
   background-color: #282c34;
@@ -28,11 +37,3 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
