@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import watering from './watering.svg';
 import './App.css';
+const url = process.env.NODE_ENV === 'production' ? 'http://192.168.55.14:8003' : 'http://localhost:8003'
 
 function App() {
   const [activeDuration, setActiveDuration] = useState<10 | 20 | 30 | 40>(10)
   const irrigate = async () => {
-    const url = process.env.NODE_ENV === 'production' ? 'http://192.168.55.14:8003' : 'http://localhost:8003'
     fetch(`${url}/irrigation/irrigate`, { method: 'POST', body: JSON.stringify({ irrigationTime: activeDuration }),   headers: {
       "Content-Type": "application/json",
     }, })
   }
+
+  const stopIrrigation = () => {
+    fetch(`${url}/irrigation/stop`, { method: 'POST', body: JSON.stringify({ irrigationTime: activeDuration }),   headers: {
+      "Content-Type": "application/json",
+    }, })
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -41,6 +48,14 @@ function App() {
           </button>
         </div>
         <img onClick={() => irrigate()} src={watering} className="App-logo" alt="logo" />
+
+        <button
+            style={{ marginTop: '20px', background: 'gray' }}
+            onClick={() => stopIrrigation()}
+            className='Duration-button'
+          >
+            Stop irrigation
+          </button>
       </header>
     </div>
   );

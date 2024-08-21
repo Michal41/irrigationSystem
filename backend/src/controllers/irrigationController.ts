@@ -12,4 +12,9 @@ router.post('/irrigate', async (req, res) => {
   return res.json({})
 })
 
+router.post('/stop', async (req, res) => {
+  stopIrrigation()
+  return res.json({})
+})
+
 export default router
