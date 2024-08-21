@@ -9,9 +9,12 @@ app.use('/irrigation', router)
 
 beforeEach(async () => {})
 
-describe('GET /', () => {
+describe('POST /irrigate', () => {
   it('should send event', async () => {
-    const response = await request(app).get(`/irrigation/`)
+    const requestBody = {
+      irrigationTime: 20
+    }
+    const response = await request(app).post(`/irrigation/irrigate`).send(requestBody)
     expect(response.status).toBe(200)
   })
 })

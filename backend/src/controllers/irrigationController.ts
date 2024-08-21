@@ -1,7 +1,14 @@
 import express from 'express'
+import { stopIrrigation } from '../helpers/stopIrrigation'
+import { startIrrigation } from '../helpers/startIrrigation'
 
 const router = express.Router()
-router.get('/', async (req, res) => {
+router.post('/irrigate', async (req, res) => {
+  const irrigationTime = req.body.irrigationTime
+  startIrrigation()
+  setTimeout(() => {
+    stopIrrigation()
+  }, irrigationTime * 1000 * 60)
   return res.json({})
 })
 

@@ -3,6 +3,8 @@ services:
   backend:
     privileged: true
     container_name: backend
+    environment:
+      DRY_RUN: 'false'
     restart: always
     volumes:
       - ./backend/:/app
