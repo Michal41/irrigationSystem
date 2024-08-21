@@ -1,11 +1,9 @@
-export const startIrrigation = () => {
-  console.log('stop irrigation')
-  //@ts-ignore
-  if(process.env.NODE_ENV !== 'production') {
-    return
-  }
-  //@ts-ignore
-  let Gpio = require('onoff').Gpio;
-  var PIN = new Gpio(516, 'out', { initial: 1 });
+var Gpio = require('onoff').Gpio;
+var PIN = new Gpio(516, 'out', { initial: 1 }); // on rasberyPI it is physical 7
+
+export const stopIrrigation = async () => {
   PIN.writeSync(1)
 }
+
+
+stopIrrigation().then()
