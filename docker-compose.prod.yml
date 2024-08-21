@@ -1,0 +1,30 @@
+version: '2'
+services:
+  backend:
+    privileged: true
+    container_name: backend
+    environment:
+      DRY_RUN: 'false'
+    restart: always
+    ports:
+      - "8003:8003"
+    build:
+      context: backend/.
+      dockerfile: DockerFile.prod
+    command: 'yarn start'
+    depends_on:
+      - backend-db
+  backend-db:
+    image: postgres:15.2
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: appuser
+      POSTGRES_DB: postgres
+  frontend:
+    ports:
+      - "80:80"
+    build:
+      context: frontend/.
+      dockerfile: DockerFile.prod
+    restart: always
