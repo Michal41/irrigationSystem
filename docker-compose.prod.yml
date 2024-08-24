@@ -23,7 +23,7 @@ services:
       POSTGRES_DB: postgres
   frontend:
     ports:
-      - "80:80"
+      - "85:85"
     build:
       context: frontend/.
       dockerfile: DockerFile.prod
